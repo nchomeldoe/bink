@@ -4,5 +4,16 @@ def sort_by_field_ascending(df: list, field: str) -> list:
 
 
 def filter_by_field(df: list, field: str, filter: str) -> list:
-    """Sorts a dataframe based on a numerical field"""
+    """Filters dataframe to rows where field matches value"""
     return [row for row in df if row[field] == filter]
+
+
+def get_dict_of_value_counts_in_field(df: list, field: str) -> list:
+    """Returns a dict showing count of values in a field"""
+    field = [row[field] for row in df]
+    keys = set(field)
+    dict = {}
+    for key in keys:
+        count = len([val for val in field if val == key])
+        dict[key] = count
+    return dict
