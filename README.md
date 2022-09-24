@@ -12,5 +12,6 @@ Run `python analysis` to see my answers
 
 Run `pytest` to run my tests
 
-## Data normalisation
-The values for "Tenant Name" are curently unnormalised. I wasn't entirely clear if the instructions had asked me to leave it in this state or otherwise. I considered writing a function to clean the data, which would have been easy to do for this small dataset, but would not have been extendable to a real-life dataset.
+## NB Data normalisation
+
+The values for "Tenant Name" are unnormalised. I wasn't clear if the instructions had asked me to leave them in this state or otherwise. I considered writing a function to clean the small number of tenant names found in this test dataset, but the function would not easily extend to use on a real-life dataset. Let me know, and I can write said function asap.
