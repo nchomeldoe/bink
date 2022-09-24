@@ -8,19 +8,16 @@ from api import (
     get_dict_of_value_counts_in_field,
     filter_date_field_within_dates,
 )
-from utils import string_to_date
+from utils import string_to_date, read_csv_to_list_of_dicts
 
 
 proj_root = Path(__file__).parent.parent.resolve()
 data_path = f"{proj_root}/data/mast_data.csv"
-
-with open(data_path) as csv_file:
-    csv_reader = DictReader(csv_file, delimiter=",")
-    data = list(csv_reader)
+data = read_csv_to_list_of_dicts(data_path)
 
 
 def question_one():
-    print("   Q1 - cheapest five Current Rent")
+    print("\n\n   Q1 - cheapest five Current Rent")
     sorted_data = sort_by_field_ascending(data, "Current Rent")
     cheapest_five = sorted_data[:5]
     for i, val in enumerate(cheapest_five):
@@ -29,18 +26,18 @@ def question_one():
 
 
 def question_two():
-    print("\n\n   2a - Lease years == 25")
+    print("\n\n   2a - Lease years == 25...")
     filtered_data = filter_by_field(data, "Lease Years", "25")
     for i, val in enumerate(filtered_data):
         print(i + 1)
         print(val)
-    print("   Q2b - and the sum of their rents")
+    print("\n   ...Q2b - and the sum of their rents")
     total_rent = sum([float(row['Current Rent']) for row in filtered_data])
     print(total_rent)
 
 
 def question_three():
-    print("\n\n   Q3 - Dict of tenant counts")
+    print("\n\n   Q3 - Dict of tenant counts (unnormalised)")
     dict = get_dict_of_value_counts_in_field(data, "Tenant Name")
     pretty_dict = json.dumps(dict, sort_keys=True, indent=4)
     print(pretty_dict)

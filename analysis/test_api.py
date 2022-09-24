@@ -1,5 +1,4 @@
 from pathlib import Path
-from csv import DictReader
 
 from api import (
     sort_by_field_ascending,
@@ -7,15 +6,12 @@ from api import (
     get_dict_of_value_counts_in_field,
     filter_date_field_within_dates,
 )
-from utils import string_to_date
+from utils import string_to_date, read_csv_to_list_of_dicts
 
 
 proj_root = Path(__file__).parent.parent.resolve()
 data_path = f"{proj_root}/data/test_data.csv"
-
-with open(data_path) as csv_file:
-    csv_reader = DictReader(csv_file, delimiter=",")
-    data = list(csv_reader)
+data = read_csv_to_list_of_dicts(data_path)
 
 
 def test_sort_by_field_ascending():

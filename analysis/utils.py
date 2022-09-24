@@ -1,4 +1,11 @@
 from datetime import datetime, date
+from csv import DictReader
+
+
+def read_csv_to_list_of_dicts(csv_path: str) -> list:
+    with open(csv_path) as csv_file:
+        csv_reader = DictReader(csv_file, delimiter=",")
+        return list(csv_reader)
 
 
 def string_to_date(time_str: str) -> date:
