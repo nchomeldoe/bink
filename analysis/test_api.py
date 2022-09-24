@@ -1,7 +1,7 @@
 from pathlib import Path
 from csv import DictReader
 
-from api import sort_by_field_ascending
+from api import sort_by_field_ascending, filter_by_field
 
 
 proj_root = Path(__file__).parent.parent.resolve()
@@ -15,3 +15,8 @@ with open(data_path) as csv_file:
 def test_sort_by_field_ascending():
     sorted_data = sort_by_field_ascending(data, "Dollars")
     assert sorted_data[0]["Name"] == "gav" and sorted_data[6]["Name"] == "trev"
+
+
+def test_filter_by_field():
+    filtered_data = filter_by_field(data, "Name", "dan")
+    assert len(filtered_data) == 2

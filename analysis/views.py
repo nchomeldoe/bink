@@ -1,7 +1,7 @@
 from pathlib import Path
 from csv import DictReader
 
-from api import sort_by_field_ascending
+from api import sort_by_field_ascending, filter_by_field
 
 
 proj_root = Path(__file__).parent.parent.resolve()
@@ -13,8 +13,20 @@ with open(data_path) as csv_file:
 
 
 def question_one():
-    sorted = sort_by_field_ascending(data, "Current Rent")
-    cheapest_five = sorted[:5]
+    print("************* 1 - cheapest five Current Rent")
+    sorted_data = sort_by_field_ascending(data, "Current Rent")
+    cheapest_five = sorted_data[:5]
     for i, val in enumerate(cheapest_five):
         print(i + 1)
         print(val)
+
+
+def question_two():
+    print("\n\n************* 2a - Lease years == 25")
+    filtered_data = filter_by_field(data, "Lease Years", "25")
+    for i, val in enumerate(filtered_data):
+        print(i + 1)
+        print(val)
+    print("************* 2b - and the sum of their rents")
+    total_rent = sum([float(row['Current Rent']) for row in filtered_data])
+    print(total_rent)
