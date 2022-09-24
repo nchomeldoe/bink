@@ -27,4 +27,5 @@ def get_dict_of_value_counts_in_field(df: list, field: str) -> list:
 def filter_date_field_within_dates(
     df: list, field: str, after: date, before: date
 ) -> list:
+    """Filter dataset between two dates"""
     return [row for row in df if after <= string_to_date(row[field]) <= before]

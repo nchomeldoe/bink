@@ -14,7 +14,7 @@ elif selection == '4':
 elif selection == '':
     question_one()
     question_two()
-    question_four()
+    question_three()
     question_four()
 else:
     print("Invalid selection!")

@@ -8,7 +8,7 @@ from api import (
     get_dict_of_value_counts_in_field,
     filter_date_field_within_dates,
 )
-from utils import string_to_date, read_csv_to_list_of_dicts
+from utils import string_to_date, read_csv_to_list_of_dicts, reformat_date_fields
 
 
 proj_root = Path(__file__).parent.parent.resolve()
@@ -50,6 +50,10 @@ def question_four():
     date_restricted_data = filter_date_field_within_dates(
         data, "Lease Start Date", after, before
     )
-    for i, val in enumerate(date_restricted_data):
+    reformatted_data = reformat_date_fields(
+        date_restricted_data, ["Lease Start Date", "Lease End Date"]
+    )
+
+    for i, val in enumerate(reformatted_data):
         print(i + 1)
         print(val)
