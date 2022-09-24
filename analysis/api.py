@@ -1,3 +1,8 @@
+from datetime import date
+
+from utils import string_to_date
+
+
 def sort_by_field_ascending(df: list, field: str) -> list:
     """Sorts a dataframe based on a numerical field"""
     return sorted(df, key=lambda row: float(row[field]))
@@ -17,3 +22,9 @@ def get_dict_of_value_counts_in_field(df: list, field: str) -> list:
         count = len([val for val in field if val == key])
         dict[key] = count
     return dict
+
+
+def filter_date_field_within_dates(
+    df: list, field: str, after: date, before: date
+) -> list:
+    return [row for row in df if after <= string_to_date(row[field]) <= before]
